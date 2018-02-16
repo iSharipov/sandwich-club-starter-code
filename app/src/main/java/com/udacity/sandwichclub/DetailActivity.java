@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import static com.udacity.sandwichclub.utils.StringUtils.getListAsString;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -49,6 +52,15 @@ public class DetailActivity extends AppCompatActivity {
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
+
+        TextView alsoKnownAs = findViewById(R.id.also_known_tv);
+        alsoKnownAs.setText(getListAsString(sandwich.getAlsoKnownAs(), ","));
+        TextView placeOfOrigin = findViewById(R.id.origin_tv);
+        placeOfOrigin.setText(sandwich.getPlaceOfOrigin());
+        TextView descriptionView = findViewById(R.id.description_tv);
+        descriptionView.setText(sandwich.getDescription());
+        TextView ingredients = findViewById(R.id.ingredients_tv);
+        ingredients.setText(getListAsString(sandwich.getIngredients(), ","));
     }
 
     private void closeOnError() {
